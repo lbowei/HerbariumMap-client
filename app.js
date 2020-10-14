@@ -12,9 +12,6 @@ var map = new mapboxgl.Map({
 });
 
 
-
-
-
 fetch("https://herbarium-map-server.herokuapp.com/herbarium")
   .then((response) => response.json())
   .then((data) => {
