@@ -18,7 +18,7 @@ var map = new mapboxgl.Map({
 
 
 
-fetch(" http://localhost:5000/herbarium/")
+fetch("http://localhost:5000/herbarium/")
   .then((response) => response.json())
   .then((data) => {
     const herbariums = data;
