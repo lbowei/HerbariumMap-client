@@ -12,13 +12,10 @@ var map = new mapboxgl.Map({
 });
 
 
-// const getColorFromCount = count =>{
-
-// }
 
 
 
-fetch("http://localhost:5000/herbarium/")
+fetch("https://herbarium-map-server.herokuapp.com/herbarium")
   .then((response) => response.json())
   .then((data) => {
     const herbariums = data;
