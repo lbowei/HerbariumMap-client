@@ -12,9 +12,6 @@ var map = new mapboxgl.Map({
 });
 
 
-
-
-
 fetch("https://herbarium-map-server.herokuapp.com/herbarium")
   .then((response) => response.json())
   .then((data) => {
@@ -39,8 +36,6 @@ fetch("https://herbarium-map-server.herokuapp.com/herbarium")
 
 
 
-
-
 // fetch("https://herbarium-map-server.herokuapp.com/access")
 // .then((response) => response.json())
 // .then((data) => {
@@ -55,3 +50,6 @@ fetch("https://herbarium-map-server.herokuapp.com/herbarium")
 //       .addTo(map);
 //   });
 // });
+
+
+//Click -> herbariumID -> host/access/{herbariumID} -> return list  of access record -> display these record on map.
