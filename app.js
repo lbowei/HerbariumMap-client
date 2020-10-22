@@ -12,6 +12,9 @@ var map = new mapboxgl.Map({
 });
 
 
+
+
+
 fetch("https://herbarium-map-server.herokuapp.com/herbarium")
   .then((response) => response.json())
   .then((data) => {
@@ -21,8 +24,34 @@ fetch("https://herbarium-map-server.herokuapp.com/herbarium")
       const { Herbariumname, latitude, longitude } = herbarium;
       console.log(latitude);
       // console.log(herbarium)
-      var marker = new mapboxgl.Marker({ color: "#7BAFD4" })
-        .setLngLat([longitude, latitude])
-        .addTo(map);
+
+      const marker = new mapboxgl.Marker()
+      const minPopup = new mapboxgl.Popup()
+
+      minPopup.setHTML("<h2>" + Herbariumname + "</h2>")
+      marker.setPopup(minPopup)
+      marker.setLngLat([longitude,latitude])
+      marker.addTo(map)
+      // const popup = new mapboxgl.Popup();
+      // popup.setLngLat([longitude, latitude]).setHTML(`<h1>Hello</h1>`).addTo(map);
     });
   });
+
+
+
+
+
+// fetch("https://herbarium-map-server.herokuapp.com/access")
+// .then((response) => response.json())
+// .then((data) => {
+//   const herbariums = data;
+//   console.log(data);
+//   herbariums.forEach((access) => {
+//     const { HerbariumID, date, latitude, longitude } = access;
+//     console.log(latitude);
+//     // console.log(herbarium)
+//     var marker = new mapboxgl.Marker({ color: "red" })
+//       .setLngLat([longitude, latitude])
+//       .addTo(map);
+//   });
+// });
