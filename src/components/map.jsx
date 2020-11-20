@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import styled from "styled-components";
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
-import {getColorFromTimesofAccess} from './functions_inuse.js';
+import {getColorFromTimesofAccess,calCounts} from './functions_inuse.js';
 
 require('dotenv').config();
 
@@ -43,13 +43,7 @@ class Map extends Component {
         var maxcunt=0;
         data.slice(0,25).forEach(plant => {
             var { Access, occid, catalogNumber, country, stateProvince, county, decimalLatitude, decimalLongitude } = plant;
-            var sum_count = 0
-            //console.log("actal_target_date: " + this.state.target_date)
-            Access.forEach(access => {
-                if (Date.parse(access.accessDate) > this.state.target_date) {
-                    sum_count = sum_count+access.cnt;
-                }
-            })
+            var sum_count = calCounts(Access, this.state.target_date);
             if (sum_count>maxcunt) maxcunt=sum_count;
             var modifited_plant = {
                 "occid": occid,
@@ -202,6 +196,7 @@ class Map extends Component {
                     <input type="range" min={2015} max={2020} value={this.state.value} className="slider" onChange={this.handleOnChange}/>
                     <div className="value">{this.state.value}</div>
                 </Style>
+                <a href="../report.html" target="view_window" className="reportButton" >report<div id="report"></div></a> 
                 </ReactMapGL>
                 
             </div>

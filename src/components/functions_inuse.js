@@ -5,31 +5,27 @@ function findTime() {
   return target_date
 }
 
-function calCounts(Access, target_date) {
-  return Access.map(calTimes, target_date)
+function calCounts(Access, target_date){
+  var sum=0;
+  Access.forEach(access => {
+    if(Date.parse(access.accessDate) > target_date){
+      sum = sum+access.cnt;
+    }
+  })
 }
-  
-function calTimes(access, target_date) {
-  var date = Date.parse(access.accessDate);
-  console.log("target_date: " + target_date)
-  target_date = Date.parse(target_date);
-  console.log("target_date: " + target_date)
-  if (date < target_date){
-    return 0
-  } else {
-    return access.cnt
-  }
-}
+
   
 function getColorFromTimesofAccess(times,max){
-  if(times<Math.round(max*0.2)){
-    return "yellow"
-  } else if (times<Math.round(max*0.5)) {
-    return "orange"
-  } else if (times < Math.round(max*0.8)) {
-    return "red"
-  } else {
-    return "blue"
+  if(times !==0){
+    if(times<Math.round(max*0.2)){
+      return "blue"
+    } else if (times<Math.round(max*0.5)) {
+      return "yellow"
+    } else if (times < Math.round(max*0.8)) {
+      return "orange"
+    } else {
+      return "red"
+    }
   }
 }
 
@@ -45,12 +41,12 @@ function dataToReport(data){
   }
   return id_access;
 }
-//<a href="report.html" target="view_window"><div id="report"></div></a>     弹出新窗口
-/*
+
 function createTable(data){
 	var tableNode=document.createElement("table");
-	tableNode.setAttribute("id","table")
-	var row=data.lenghth();
+  tableNode.setAttribute("id","table");
+  var id_access=dataToReport(data);
+	var row=id_access.lenghth();
 	if(row<=0 || isNaN(row) ){
 		alert("Data Error!");
     return;
@@ -60,13 +56,13 @@ function createTable(data){
 		for(var j=0;j<2;j++){
       var tdNode=trNode.insertCell();
       if(j===0){
-        tdNode.innerHTML=data[i].occid;
+        tdNode.innerHTML=id_access[i].occid;
       }else{
-        tdNode.innerHTML=data[i].count;
+        tdNode.innerHTML=id_access[i].count;
       }
 		}
 	}
 	document.getElementById("report").appendChild(tableNode);
 }
-*/
-export {findTime, calCounts, calTimes, getColorFromTimesofAccess,dataToReport};
+
+export {findTime, calCounts, getColorFromTimesofAccess,dataToReport,createTable};

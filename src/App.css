@@ -32,6 +32,12 @@
   background-color: 'red';
 }
 
+.reportButton{
+  position: absolute;
+  top: 95%;
+  left: 5%;
+}
+
 .markers {
   background-color: Transparent;
     background-repeat:no-repeat;
