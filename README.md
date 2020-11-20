@@ -43,6 +43,8 @@ The instructions were last tested by team members who developed the project on N
  },
  ```
   * Simply type `npm test` in your command line to run the tests
+  * Currently the testing for backend covers 100% of the backend code.
+  * Current the testing for frontend covers 100% of the functinos we use, but it only covers a small amount of code in the components (Map), due to the nature of Map, it fetches data from API, and uses the data the do visulization on the map. Jest doesn't directly test Mapbox API, so it is hard to do direct testing. Also, there are some very similar function when processing the data with slight differences, which could have been done in one function. We did not manage timing that well, ended up rewriting code from JS to React in the last three weeks. The testing for JS was more thorough. 
 
 
 ### 3. Deployment:
