@@ -7,7 +7,6 @@ require('dotenv').config();
 
 const Style = styled.div`
     display: flex;
-
     color: #888;
     margin-top: 45%;
     margin-left: 2%;
@@ -197,11 +196,16 @@ class Map extends Component {
                     <div className="value">{this.state.value}</div>
                 </Style>
                 <a href="../report.html" target="view_window" className="reportButton" >report<div id="report"></div></a> 
+                <div className="legend">
+                    <img src="./blue.png" alt=" 20%<"></img><br/>
+                    <img src="yellow.png" alt=" 50%<"></img><br/>
+                    <img src="orange.png" alt=" 80%<"></img><br/>
+                    <img src="red.png" alt=" max<="></img><br/>
+                </div>
                 </ReactMapGL>
                 
             </div>
         )
     }
 }
- 
 export default Map;

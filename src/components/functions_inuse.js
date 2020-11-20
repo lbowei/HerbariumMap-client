@@ -12,6 +12,7 @@ function calCounts(Access, target_date){
       sum = sum+access.cnt;
     }
   })
+  return sum;
 }
 
   

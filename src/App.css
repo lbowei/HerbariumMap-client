@@ -19,6 +19,13 @@
   transform: rotate(-45deg);
 }
 
+.legend{
+  position: absolute;
+  top: 90%;
+  left: 95%;
+  color:rgb(90, 140, 233);
+}
+
 .pin1::after {
   position: absolute;
   content: '';
@@ -35,7 +42,7 @@
 .reportButton{
   position: absolute;
   top: 95%;
-  left: 5%;
+  left: 4%;
 }
 
 .markers {
