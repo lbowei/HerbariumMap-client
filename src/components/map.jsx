@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import styled from "styled-components";
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
-import {getColorFromTimesofAccess,calCounts} from './functions_inuse.js';
+import {getColorFromTimesofAccess,calCounts} from '../functions/functions_inuse.js';
 import bluepin from '../data/blue.png';
 import yellowpin from '../data/yellow.png';
 import orangepin from '../data/orange.png';
