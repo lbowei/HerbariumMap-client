@@ -64,7 +64,7 @@ The instructions were last tested by team members who developed the project on N
   * **Database**: MongoDB
   * **Testing**:  Jest.js, supertest.
 
-You can find the [ADR file here](./Application Architecture & Diagram.docx).
+You can find the [ADR file here](./ApplicationArchitecture&Diagram.docx).
 
 
 ### 5. Contributing:
