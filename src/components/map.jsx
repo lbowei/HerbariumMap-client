@@ -34,109 +34,68 @@ class Map extends Component {
         orange_plants: []
     }
 
-    componentDidMount() {
+    plantHelper(data) {
         var new_plants = [];
         var yellow_plants = []
         var blue_plants = []
         var red_plants = []
         var orange_plants = []
+        var maxcunt=0;
+        data.slice(0,25).forEach(plant => {
+            var { Access, occid, catalogNumber, country, stateProvince, county, decimalLatitude, decimalLongitude } = plant;
+            var sum_count = 0
+            //console.log("actal_target_date: " + this.state.target_date)
+            Access.forEach(access => {
+                if (Date.parse(access.accessDate) > this.state.target_date) {
+                    sum_count = sum_count+access.cnt;
+                }
+            })
+            if (sum_count>maxcunt) maxcunt=sum_count;
+            var modifited_plant = {
+                "occid": occid,
+                "catalogNumber": catalogNumber,
+                "country": country,
+                "stateProvince": stateProvince,
+                "county": county,
+                "decimalLatitude": decimalLatitude,
+                "decimalLongitude": decimalLongitude,
+                "sum_count": sum_count,
+                "color": 'NULL'
+            }
+            new_plants.push(modifited_plant)
+        })
+        new_plants.forEach(plant => {
+            var color = getColorFromTimesofAccess(plant.sum_count,maxcunt);
+            plant.color=color;
+            if (plant.color === "yellow") {
+                yellow_plants.push(plant)
+            } else if (plant.color === "blue") {
+                blue_plants.push(plant)
+            } else if (plant.color === "red") {
+                red_plants.push(plant)
+            } else if (plant.color === "orange") {
+                orange_plants.push(plant)
+            }
+        })
+        this.setState({plants: data})
+        this.setState({modified_plants: new_plants})  
+        this.setState({yellow_plants: yellow_plants}) 
+        this.setState({blue_plants: blue_plants})
+        this.setState({red_plants: red_plants})
+        this.setState({orange_plants: orange_plants});
+    }
+
+    componentDidMount() {
         fetch("https://herbarium-map-server.herokuapp.com/herbarium")
         .then((response) => response.json())
-        .then((data) => {
-            var maxcunt=0;
-            data.slice(0,25).forEach(plant => {
-                var { Access, occid, catalogNumber, country, stateProvince, county, decimalLatitude, decimalLongitude } = plant;
-                var sum_count = 0
-                //console.log("actal_target_date: " + this.state.target_date)
-                Access.forEach(access => {
-                    if (Date.parse(access.accessDate) > this.state.target_date) {
-                        sum_count = sum_count+access.cnt;
-                    }
-                })
-                if (sum_count>maxcunt) maxcunt=sum_count;
-                var modifited_plant = {
-                    "occid": occid,
-                    "catalogNumber": catalogNumber,
-                    "country": country,
-                    "stateProvince": stateProvince,
-                    "county": county,
-                    "decimalLatitude": decimalLatitude,
-                    "decimalLongitude": decimalLongitude,
-                    "sum_count": sum_count,
-                    "color": 'NULL'
-                }
-                new_plants.push(modifited_plant)
-            })
-            new_plants.forEach(plant => {
-                var color = getColorFromTimesofAccess(plant.sum_count,maxcunt);
-                plant.color=color;
-                if (plant.color === "yellow") {
-                    yellow_plants.push(plant)
-                } else if (plant.color === "blue") {
-                    blue_plants.push(plant)
-                } else if (plant.color === "red") {
-                    red_plants.push(plant)
-                } else if (plant.color === "orange") {
-                    orange_plants.push(plant)
-                }
-            })
-            this.setState({plants: data})
-            this.setState({modified_plants: new_plants})  
-            this.setState({yellow_plants: yellow_plants}) 
-            this.setState({blue_plants: blue_plants})
-            this.setState({red_plants: red_plants})
-            this.setState({orange_plants: orange_plants});
-        })
+        .then((data)=>this.plantHelper(data))
      }
 
     componentDidUpdate(pP, pS, sS) {
-        var new_plants = [];
-        var yellow_plants = []
-        var blue_plants = []
-        var red_plants = []
-        var orange_plants = []
         if (pS.target_date !== this.state.target_date) {
-            var maxcunt=0;
-            this.state.plants.slice(0,25).forEach(plant => {
-                var { Access, occid, catalogNumber, country, stateProvince, county, decimalLatitude, decimalLongitude } = plant;
-                var sum_count = 0
-                Access.forEach(access => {
-                    if (Date.parse(access.accessDate) > this.state.target_date) {
-                        sum_count = sum_count+access.cnt;
-                    }
-                })
-                if (sum_count>maxcunt) maxcunt=sum_count;
-                var modifited_plant = {
-                    "occid": occid,
-                    "catalogNumber": catalogNumber,
-                    "country": country,
-                    "stateProvince": stateProvince,
-                    "county": county,
-                    "decimalLatitude": decimalLatitude,
-                    "decimalLongitude": decimalLongitude,
-                    "sum_count": sum_count,
-                    "color": 'NULL'
-                }
-                new_plants.push(modifited_plant)
-            })
-            new_plants.forEach(plant => {
-                var color = getColorFromTimesofAccess(plant.sum_count,maxcunt);
-                plant.color=color;
-                if (plant.sum_count > 0) {
-                    if (plant.color === "yellow") {
-                        yellow_plants.push(plant)
-                    } else if (plant.color === "blue") {
-                        blue_plants.push(plant)
-                    } else if (plant.color === "red") {
-                        red_plants.push(plant)
-                    } else if (plant.color === "orange") {
-                        orange_plants.push(plant)
-                    }
-                }
-            })
-            this.setState({modified_plants: new_plants, yellow_plants: yellow_plants, blue_plants: blue_plants, red_plants: red_plants, orange_plants: orange_plants});
+            this.plantHelper(this.state.plants);
         }
-      }
+    }
 
     handleOnChange = (e) => {
         this.setState({value: e.target.value});
