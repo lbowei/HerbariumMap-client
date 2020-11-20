@@ -1,10 +1,3 @@
-function findTime() {
-  var target_date = new Date();
-  target_date.setMonth(target_date.getMonth() - 6);  
-  document.getElementById("time_button").innerHTML = "Showing records in the past six month";
-  return target_date
-}
-
 function calCounts(Access, target_date){
   var sum=0;
   Access.forEach(access => {
@@ -29,7 +22,7 @@ function getColorFromTimesofAccess(times,max){
     }
   }
 }
-
+/* can generant report as a table with (occid, sumcnt)
 function dataToReport(data){
   var id_access=[];
   var temp={};
@@ -65,5 +58,5 @@ function createTable(data){
 	}
 	document.getElementById("report").appendChild(tableNode);
 }
-
-export {findTime, calCounts, getColorFromTimesofAccess,dataToReport,createTable};
+*/
+export {calCounts, getColorFromTimesofAccess/*,dataToReport,createTable*/};
