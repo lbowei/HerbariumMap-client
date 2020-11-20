@@ -9,9 +9,10 @@ require('dotenv').config();
 
 const Style = styled.div`
     display: flex;
+
     color: #888;
-    margin-top: 600px;
-    margin-left: 20px;
+    margin-top: 45%;
+    margin-left: 2%;
 `;
 
 class Map extends Component {
@@ -20,7 +21,7 @@ class Map extends Component {
         target_date: Date.parse('01/01/1900'),
         viewport: {
             width: "100vw",
-            height: "90vh",
+            height: "100vh",
             latitude: 35.913200,
             longitude: -79.055847,
             zoom: 4
@@ -166,7 +167,11 @@ class Map extends Component {
                 >
                 <h1
                 className = "title"
-                >UNC HerbariumMap</h1>
+                ><div
+                className = "titleContent"
+                >
+                    UNC Herbarium Map
+                    </div></h1>
                 {this.state.orange_plants.map(plant => 
                     (
                     <Marker key = {plant.occid}

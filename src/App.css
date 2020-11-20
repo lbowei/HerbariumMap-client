@@ -1,7 +1,10 @@
 .title {
-  background-color: aqua;
+  background-color: #4B9CD3;
   opacity: 0.5;
-  margin-left: 2px;
+}
+
+.titleContent {
+  margin-left: 2%;
 }
 .pin1 {
   position: absolute;
