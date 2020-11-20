@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+### 0. Herbarium Map:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+UNC Herbarium is the second largest Herbarium in the US and has large amounts of plant specimen collections from all over the world.  Plant specimens take up much space in   buildings and are not considered useful or necessary by some people, however, the specimens are accessed constantly by researchers and scholars. 
 
-## Available Scripts
+Our client, Carol McCormick, the Curator of Herbarium, would like a web app built to show the access records of plant specimens to show the values of the specimens. 
 
-In the project directory, you can run:
+Based on this, we would like to build a web-based “world-wide map,‘blip’ every time specimen record is accessed, time-lapse for past month, post the movie-blip-map on herbarium website” and a Dynamic demonstration of collection use and scope, to show the valuableness of the plant specimens.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Getting started:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* **Prerequisites:** 
+  * For frontend, you should install **react**, **mapbox-gl**, **dotenv** and **jest** 
+  * There are no specific requirements for backend, since our **mongodb** database’s running on cloud. Just install the required software before going on(See Installing)
+    * If you want to see what the database’s like, ask a team member for the login credential for mongodb.
+ 
+* **Installing:** 
+  Please install Node.js:
+  * Install Node.js  https://nodejs.org/en/ 
+  * For testing:
+    * npm install --save-dev jest
 
-### `npm test`
+* **Running locally:**
+  * First, run `npm install` on both frontend and backend, this will install the required package for this project.
+  * Run `npm start` on backend and frontend separately to start the application
+  * Run `npm test` to run jest to test the api.
+  * Frontend Specific:
+    * Install mapbox: `npm install --save react-maobox-gl`
+    * Install dotenv for environmental variable: `npm install --save dotenv`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **Wrranty:** 
+The instructions were last tested by team members who developed the project on Nov. 11st, 2020, on the MacOS system.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Testing:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  * Run `npm install` will automatically install **jest** package.
+  * In package.json, add one line in `"scripts"`: `“test”: “jest”`, which will look like:
+ ```
+ "scripts": {
+   "start": "nodemon app.js",
+   "test": "jest"
+ },
+ ```
+  * Simply type `npm test` in your command line to run the tests
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### 3. Deployment:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  * For this project, we use **heroku** to host our api and frontend.
+  * The process in detail 
+    * https://devcenter.heroku.com/articles/git 
+  * The way we update our deployment:
+    * `heroku login` to login with our heroku credential
+    * `Git add`
+    * `Git commit -m “message”`
+    * `Git push heroku main`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 4. Technologies used:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  * **Frontend**: React.js, Mapbox
+  * **Backend**:  Node.js, Express.js, mongoose
+  * **Database**: MongoDB
+  * **Testing**:  Jest.js, supertest.
 
-## Learn More
+You can find the [ADR file here](./ADR.txt).
+And the [ADR diagram here](./ADRdiagram.jpg)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 5. Contributing:
 
-### Code Splitting
+If you want to contribute to the project, you need to download the codes in this github.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+You can also get access to the [Trello leaderboard](https://trello.com/yiyangchen12/boards) to see what tasks are to be done. 
 
-### Analyzing the Bundle Size
+There are no special style, testing, or process conventions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**For more information goto our** [team webpage](https://tarheels.live/teamv/)
 
-### Making a Progressive Web App
+Technologies we used (Feel free to use other editors/IDEs):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  * Install VSCode https://code.visualstudio.com/ 
+  * Install Postman https://www.postman.com/downloads/ 
+  * Install Prettier in VSCode https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode 
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 6. Authors:
 
-### Deployment
+* **Yiyang Chen:**  Collect and deal with data
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* **Hongyu Li:** Frontend
 
-### `npm run build` fails to minify
+* **Longbo Wei:** Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### 7. License:
+
+Herbarium Map
+
+Copyright © <2020> <Team V, COMP523-2020 Fall-UNC Chapel Hill>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+### 8. Acknowledgements:
+
+Special thanks to our client **Carol McCormick**, mentor **Jeff Byzek** and professor **Jeff Terrell**
