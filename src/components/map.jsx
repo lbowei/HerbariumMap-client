@@ -223,17 +223,19 @@ class Map extends Component {
                 ))}
 
                 {selectedPlant && <Popup
+                        className='cpopup'
                         latitude={selectedPlant.decimalLatitude}
                         longitude={selectedPlant.decimalLongitude}
                         closeButton={true}
-                        closeOnClick={false}
+                        closeOnClick={true}
+                        //closeOnMove={true}
                         onClose={() => this.setState({selectedPlant: false})}
                         anchor="top" >
-                            <div>
-                                <h5>occid: {selectedPlant.occid} </h5>
-                                <h5>Catalog Number: {selectedPlant.catalogNumber}</h5>
-                                <h5>{selectedPlant.county}, {selectedPlant.stateProvince}, {selectedPlant.country}</h5>
-                                <h5>Access Times: {selectedPlant.sum_count}</h5>
+                            <div className='popup_div'>
+                                <p className='popup_content'><strong>occid:</strong> {selectedPlant.occid} </p>
+                                <p className='popup_content'><strong>Catalog Number:</strong> {selectedPlant.catalogNumber}</p>
+                                <p className='popup_content'><strong>{selectedPlant.county}, {selectedPlant.stateProvince}, {selectedPlant.country}</strong></p>
+                                <p className='popup_content'><strong>Access Times:</strong> {selectedPlant.sum_count}</p>
                             </div>
                         </Popup>}
                 {/* <Slider>

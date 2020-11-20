@@ -40,3 +40,19 @@
     overflow: hidden;
     outline:none;
 }
+
+.cpopup{
+  border-radius: 2%;
+  background-color:transparent;
+  border-color:rgba(198, 230, 233, 0.822);
+  box-shadow: 3px 3px 2px #7c7c7c;
+}
+
+.popup_div{
+  background-color:transparent;
+  border-radius: 10%;
+}
+
+.popup_content {
+  color:rgb(51, 51, 51);
+}
