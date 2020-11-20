@@ -64,8 +64,7 @@ The instructions were last tested by team members who developed the project on N
   * **Database**: MongoDB
   * **Testing**:  Jest.js, supertest.
 
-You can find the [ADR file here](./ADR.txt).
-And the [ADR diagram here](./ADRdiagram.jpg)
+You can find the [ADR file here](HerbariumMap-client/Application Architecture & Diagram.docx).
 
 
 ### 5. Contributing:
