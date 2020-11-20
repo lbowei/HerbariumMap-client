@@ -1,10 +1,8 @@
 import React, { Component} from 'react';
 import styled from "styled-components";
-import Slider from "./slider";
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import {getColorFromTimesofAccess} from './functions_inuse.js';
 
-import Data from './data';
 require('dotenv').config();
 
 const Style = styled.div`
@@ -26,6 +24,7 @@ class Map extends Component {
             longitude: -79.055847,
             zoom: 4
           },
+        //maxcunt=0, // add the number here if you wants to reveal the number of different level of color, otherwise there is presentage
         selectedPlant: null,
         plants: [],
         modified_plants: [],
@@ -33,9 +32,9 @@ class Map extends Component {
         blue_plants: [],
         red_plants: [],
         orange_plants: []
-     }
+    }
 
-     componentDidMount() {
+    componentDidMount() {
         var new_plants = [];
         var yellow_plants = []
         var blue_plants = []
@@ -44,21 +43,17 @@ class Map extends Component {
         fetch("https://herbarium-map-server.herokuapp.com/herbarium")
         .then((response) => response.json())
         .then((data) => {
+            var maxcunt=0;
             data.slice(0,25).forEach(plant => {
                 var { Access, occid, catalogNumber, country, stateProvince, county, decimalLatitude, decimalLongitude } = plant;
                 var sum_count = 0
-                console.log("actal_target_date: " + this.state.target_date)
-                var sum_count = 0
+                //console.log("actal_target_date: " + this.state.target_date)
                 Access.forEach(access => {
                     if (Date.parse(access.accessDate) > this.state.target_date) {
                         sum_count = sum_count+access.cnt;
                     }
                 })
-                //const counts = Access.map(calTimes, this.state.target_date)
-                // sum_count = counts.reduce(function(a, b){
-                //     return a + b;
-                // }, 0);
-                var color = getColorFromTimesofAccess(sum_count);
+                if (sum_count>maxcunt) maxcunt=sum_count;
                 var modifited_plant = {
                     "occid": occid,
                     "catalogNumber": catalogNumber,
@@ -68,11 +63,13 @@ class Map extends Component {
                     "decimalLatitude": decimalLatitude,
                     "decimalLongitude": decimalLongitude,
                     "sum_count": sum_count,
-                    "color": color
+                    "color": 'NULL'
                 }
                 new_plants.push(modifited_plant)
             })
             new_plants.forEach(plant => {
+                var color = getColorFromTimesofAccess(plant.sum_count,maxcunt);
+                plant.color=color;
                 if (plant.color === "yellow") {
                     yellow_plants.push(plant)
                 } else if (plant.color === "blue") {
@@ -92,13 +89,14 @@ class Map extends Component {
         })
      }
 
-     componentDidUpdate(pP, pS, sS) {
+    componentDidUpdate(pP, pS, sS) {
         var new_plants = [];
         var yellow_plants = []
         var blue_plants = []
         var red_plants = []
         var orange_plants = []
-        if (pS.target_date != this.state.target_date) {
+        if (pS.target_date !== this.state.target_date) {
+            var maxcunt=0;
             this.state.plants.slice(0,25).forEach(plant => {
                 var { Access, occid, catalogNumber, country, stateProvince, county, decimalLatitude, decimalLongitude } = plant;
                 var sum_count = 0
@@ -107,7 +105,7 @@ class Map extends Component {
                         sum_count = sum_count+access.cnt;
                     }
                 })
-                var color = getColorFromTimesofAccess(sum_count);
+                if (sum_count>maxcunt) maxcunt=sum_count;
                 var modifited_plant = {
                     "occid": occid,
                     "catalogNumber": catalogNumber,
@@ -117,11 +115,13 @@ class Map extends Component {
                     "decimalLatitude": decimalLatitude,
                     "decimalLongitude": decimalLongitude,
                     "sum_count": sum_count,
-                    "color": color
+                    "color": 'NULL'
                 }
                 new_plants.push(modifited_plant)
             })
             new_plants.forEach(plant => {
+                var color = getColorFromTimesofAccess(plant.sum_count,maxcunt);
+                plant.color=color;
                 if (plant.sum_count > 0) {
                     if (plant.color === "yellow") {
                         yellow_plants.push(plant)
@@ -138,7 +138,7 @@ class Map extends Component {
         }
       }
 
-     handleOnChange = (e) => {
+    handleOnChange = (e) => {
         this.setState({value: e.target.value});
         if (e.target.value === "2015") {
             this.setState({target_date: Date.parse("01/01/2015")})
@@ -238,9 +238,7 @@ class Map extends Component {
                                 <p className='popup_content'><strong>Access Times:</strong> {selectedPlant.sum_count}</p>
                             </div>
                         </Popup>}
-                {/* <Slider>
-                    
-                </Slider> */}
+                
                 <Style>
                     <input type="range" min={2015} max={2020} value={this.state.value} className="slider" onChange={this.handleOnChange}/>
                     <div className="value">{this.state.value}</div>
