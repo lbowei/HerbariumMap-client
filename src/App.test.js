@@ -1,5 +1,12 @@
 const {calCounts, getColorFromTimesofAccess} = require('./functions/functions');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Map from './components/map';
 
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Map />, div);
+});
 
 //test calTimes function to calculate the total access time of a plant
 describe("Calculate the total access times", () => {
@@ -18,13 +25,13 @@ describe("Test the color of makers", () => {
     test("marker should be yellow when count is less than 20%", () => {
       expect(getColorFromTimesofAccess(5, max)).toBe("blue");
     });
-    // test("marker should be orange when count is less than 50%", () => {
-    //     expect(getColorFromTimesofAccess(10, max)).toBe("yellow");
-    //   });
-    // test("marker should be red when count is less than 80%", () => {
-    //     expect(getColorFromTimesofAccess(30, max)).toBe("orange");
-    //   })
-    // test("marker should be blue when count is greater than 80%", () => {
-    //     expect(getColorFromTimesofAccess(50, max)).toBe("red");
-    //   });
+    test("marker should be orange when count is less than 50%", () => {
+        expect(getColorFromTimesofAccess(10, max)).toBe("yellow");
+      });
+    test("marker should be red when count is less than 80%", () => {
+        expect(getColorFromTimesofAccess(30, max)).toBe("orange");
+      })
+    test("marker should be blue when count is greater than 80%", () => {
+        expect(getColorFromTimesofAccess(50, max)).toBe("red");
+      });
 });
