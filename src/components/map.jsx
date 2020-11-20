@@ -2,6 +2,10 @@ import React, { Component} from 'react';
 import styled from "styled-components";
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import {getColorFromTimesofAccess,calCounts} from './functions_inuse.js';
+import bluepin from '../data/blue.png';
+import yellowpin from '../data/yellow.png';
+import orangepin from '../data/orange.png';
+import redpin from '../data/red.png';
 
 require('dotenv').config();
 
@@ -195,12 +199,11 @@ class Map extends Component {
                     <input type="range" min={2015} max={2020} value={this.state.value} className="slider" onChange={this.handleOnChange}/>
                     <div className="value">{this.state.value}</div>
                 </Style>
-                <a href="../report.html" target="view_window" className="reportButton" >report<div id="report"></div></a> 
                 <div className="legend">
-                    <img src="./blue.png" alt=" 20%<"></img><br/>
-                    <img src="yellow.png" alt=" 50%<"></img><br/>
-                    <img src="orange.png" alt=" 80%<"></img><br/>
-                    <img src="red.png" alt=" max<="></img><br/>
+                    <img src={bluepin} alt=" 20%<" width="30" height="40"></img><h>20%</h><br/>
+                    <img src={yellowpin} alt=" 50%<" width="30" height="40"></img><h>50%</h><br/>
+                    <img src={orangepin} alt=" 80%<" width="30" height="40"></img><h>80%</h><br/>
+                    <img src={redpin} alt=" max<=" width="30" height="40"></img><h>max</h><br/>
                 </div>
                 </ReactMapGL>
                 
