@@ -1,12 +1,10 @@
 const {calCounts, getColorFromTimesofAccess} = require('./functions/functions');
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Map from './components/map';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Map />, div);
-});
+
+// it('renders without crashing', () => {
+//   const div = document.createElement('div');
+//   ReactDOM.render(<Map />, div);
+// });
 
 //test calTimes function to calculate the total access time of a plant
 describe("Calculate the total access times", () => {
