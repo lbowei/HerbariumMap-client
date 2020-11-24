@@ -6,6 +6,8 @@ Our client, Carol McCormick, the Curator of Herbarium, would like a web app buil
 
 Based on this, we would like to build a web-based “world-wide map,‘blip’ every time specimen record is accessed, time-lapse for past month, post the movie-blip-map on herbarium website” and a Dynamic demonstration of collection use and scope, to show the valuableness of the plant specimens.
 
+See Map: https://herb-map-2.herokuapp.com/
+
 
 ### 1. Getting started:
 
@@ -57,6 +59,8 @@ The instructions were last tested by team members who developed the project on N
     * `Git add`
     * `Git commit -m “message”`
     * `Git push heroku main`
+    
+  * See Map: https://herb-map-2.herokuapp.com/
 
 
 ### 4. Technologies used:
